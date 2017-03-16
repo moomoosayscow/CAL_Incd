@@ -13,7 +13,7 @@ while(True):
 	activeseconds=0	#arbitrary values
 	secondsnow=1
 
-	activetime=dateparser.parse('13:46').time()
+	activetime=dateparser.parse('12:00').time()
 	datenow=datetime.now() #gives today's date
 	datenow=datenow.replace(microsecond=0)
 	timenow=datenow.time()
