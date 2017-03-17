@@ -1,8 +1,14 @@
-Read the CAL Fire website everyday at noon for current incidents and tweet out the currently occuring incidents in California
-
 Save Twitter Keys to a file called twt.txt in the following format:
 
 YOUR CONSUMER KEY
 YOUR CONSUMER SECRET
 YOUR ACCESS TOKEN
 YOUR ACCESS TOKEN SECRET
+
+My boss from my summer job complained to me about how there was unexpected traffic on the highway due to a forest fire. After seeing the example of the Quake Bot which produced an announcement through Twitter whenever an earthquake occurred, I decided to follow a similar model, but sending a tweet whenever a forest fire occurred. When searching for a database, I was ideally looking similar to the database for Quakebot which updated regularly the new events. I found something similar from the CAL FIRE website. The CAL FIRE website had a current incidents page. Looking at the archived versions of the website as well as the present website, it seemed that the website was updated on a daily basis. If the incident was still occurring, it would be updated. If the incident ended, that particular incident would no longer be updated. What I did not expect from the database was that it did not only include major fires, but also major natural incidents. For example, the most recent incident that it has updated on was the Oroville Spillway. This was an additional plus as I could now broaden the spectrum a little and let people know of major California natural incidents rather than just fires. To carry out this program, I decided to program the bot to run at noon everyday, go through all the data, pick the events that have been updated in the last 24 hours, compile them into a tweet, and send out the tweet.
+
+The first step I took was to figure out how to get the useful data. Obtaining the update timestamp for each event was simple. Each timestamp was preceded by the phrase “Updated:”, making it easy to search for the location of those words in the html. Obtaining the names of the events was a little harder. Since I was now not only focusing on fires, I could not look only for the phrase “Fire”. I found that all the events were headers with a certain attribute and used that to obtain all the event names. To only get the events that happened in the past 24 hours, I made an array for the times and inputted 1 if the event occurred in the past 24 hours and a 0 if the event did not occur in the past 24 hours. Then I went through the list of event names and whichever name corresponded to a 1, I attached to the tweet. I then sent the tweet.
+
+The second step was to figure out how the send the tweet. Using the Twitter API, I obtained the access tokens and keys and figured out how to send out a tweet.
+
+The third step was to have the program run every day at noon. I used the datetime library to get the current time and isolated the time. I then converted the time to seconds and also converted the time for noon into seconds using midnight as a reference point. I then had the bot run whenever the difference in times was zero. I was worried about the program running so quick, a second would not go by the time the program was done running and the program would run again. As a countermeasure, I had the bot sleep for a few seconds after running to ensure the program did not run again unnecessarily.
