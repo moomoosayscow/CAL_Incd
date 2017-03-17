@@ -59,8 +59,11 @@ def makeTweet(incidents):
 		tweet='Current Incidents Reported: '
 		for inc in incidents:
 			tweet=tweet+inc+' | '
+		tweet=tweet[:-2]
 	else:
 		tweet='No current incidents reported' 
+
+	tweet=tweet + "\nFor more info, visit: https://goo.gl/JJD8dv"
 	return tweet
 
 def parseIncidents(url, filename):
